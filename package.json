@@ -1,7 +1,8 @@
 {
-  "name": "stencil-keyboard",
+  "name": "@register-ui/keyboard-base",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "private": false,
+  "description": "Virtual Keyboard Building Blocks",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",

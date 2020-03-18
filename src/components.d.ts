@@ -38,7 +38,6 @@ export namespace Components {
     */
     'pressAction': 'add' | 'delete' | 'function';
   }
-  interface RegKeyboardGlobal {}
 }
 
 declare global {
@@ -55,16 +54,9 @@ declare global {
     prototype: HTMLRegKeyboardButtonElement;
     new (): HTMLRegKeyboardButtonElement;
   };
-
-  interface HTMLRegKeyboardGlobalElement extends Components.RegKeyboardGlobal, HTMLStencilElement {}
-  var HTMLRegKeyboardGlobalElement: {
-    prototype: HTMLRegKeyboardGlobalElement;
-    new (): HTMLRegKeyboardGlobalElement;
-  };
   interface HTMLElementTagNameMap {
     'reg-keyboard': HTMLRegKeyboardElement;
     'reg-keyboard-button': HTMLRegKeyboardButtonElement;
-    'reg-keyboard-global': HTMLRegKeyboardGlobalElement;
   }
 }
 
@@ -98,12 +90,10 @@ declare namespace LocalJSX {
     */
     'pressAction'?: 'add' | 'delete' | 'function';
   }
-  interface RegKeyboardGlobal {}
 
   interface IntrinsicElements {
     'reg-keyboard': RegKeyboard;
     'reg-keyboard-button': RegKeyboardButton;
-    'reg-keyboard-global': RegKeyboardGlobal;
   }
 }
 
@@ -115,7 +105,6 @@ declare module "@stencil/core" {
     interface IntrinsicElements {
       'reg-keyboard': LocalJSX.RegKeyboard & JSXBase.HTMLAttributes<HTMLRegKeyboardElement>;
       'reg-keyboard-button': LocalJSX.RegKeyboardButton & JSXBase.HTMLAttributes<HTMLRegKeyboardButtonElement>;
-      'reg-keyboard-global': LocalJSX.RegKeyboardGlobal & JSXBase.HTMLAttributes<HTMLRegKeyboardGlobalElement>;
     }
   }
 }

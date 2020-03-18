@@ -1,4 +1,5 @@
-# Stencil Component Starter
+# Virtual Keyboard Blocks
+### Building blocks for virtual keyboard components
 
 These are building blocks for making efficient user-interfaces that utilize virtual keyboard components to handle user input. They are composable, and allow for both a global keyboard, and contextual keyboards that simply need to share a parent element.
 

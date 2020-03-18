@@ -1,6 +1,6 @@
 {
   "name": "@register-ui/keyboard-base",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": false,
   "description": "Virtual Keyboard Building Blocks",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/stencil-keyboard/register-keyboard.js",
+  "unpkg": "dist/register-keyboard/register-keyboard.js",
   "files": [
     "dist/",
     "loader/"

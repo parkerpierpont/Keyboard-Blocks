@@ -24,4 +24,3 @@ This component is to be placed within a ```reg-keyboard``` element. When pressed
 
 ----------------------------------------------
 
-*Built with [StencilJS](https://stenciljs.com/)*

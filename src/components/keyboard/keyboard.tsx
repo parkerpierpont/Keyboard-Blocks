@@ -1,4 +1,4 @@
-import { Host, Component, State, Listen, h, Prop } from '@stencil/core';
+import { Host, Component, State, Listen, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'reg-keyboard',
@@ -12,12 +12,22 @@ export class MyComponent {
   selectionEnd: number | null;
 
   @State() focusedInput: HTMLInputElement | null = null;
+  @State() layout: string | null = null;
 
   /**
    * If true, this keyboard will listen and attempt to control any input that has the class ```global-keyboard```.
    * If false, this keyboard will listen and attempt to control any input beneath the current parent element of this component that has the class ```local-keyboard```.
    */
   @Prop() global: boolean = true;
+
+  /**
+   * Inputs can have a dom property ```data-layout="{something}"``` that allows them to
+   * pass the name of a layout back to the keyboard component. If the keyboard detects that
+   * the current input has a different 'data-layout' property than the previous input, it will
+   * fire this event, which provides the name of the new layout specified on the current input's
+   * ```data-layout``` dom property.
+   */
+  @Event() layoutChange: EventEmitter<string | null>;
 
   @Listen('focusin', { target: 'window' })
   onFocusElement(e: FocusEvent) {
@@ -30,6 +40,13 @@ export class MyComponent {
     input.addEventListener('blur', this.onFocusOutElement);
     this.selectionStart = input.selectionStart;
     this.selectionEnd = input.selectionEnd;
+    let layout = null;
+
+    if (e.target.dataset?.layout) {
+      layout = e.target.dataset.layout;
+    }
+    this.layoutChange.emit(layout);
+    this.layout = layout;
     this.focusedInput = input;
   }
 
@@ -44,6 +61,13 @@ export class MyComponent {
     input.addEventListener('blur', this.onFocusOutElement);
     this.selectionStart = input.selectionStart;
     this.selectionEnd = input.selectionEnd;
+    let layout = null;
+
+    if (e.target.dataset?.layout) {
+      layout = e.target.dataset.layout;
+    }
+    this.layoutChange.emit(layout);
+    this.layout = layout;
     this.focusedInput = input;
   }
 
@@ -117,8 +141,15 @@ export class MyComponent {
     }
 
     return (
-      <Host>
+      <Host
+        class={{
+          "keyboardRoot": true,
+          "keyboardRoot-active": !!focusedInput,
+          "keyboardRoot-inactive": !focusedInput,
+          [`keyboardRoot-layout-${this.layout}`]: this.layout !== null
+        }}>
         <slot></slot>
-      </Host>);
+      </Host>
+    );
   }
 }

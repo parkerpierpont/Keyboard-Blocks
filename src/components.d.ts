@@ -66,6 +66,10 @@ declare namespace LocalJSX {
     * If true, this keyboard will listen and attempt to control any input that has the class ```global-keyboard```. If false, this keyboard will listen and attempt to control any input beneath the current parent element of this component that has the class ```local-keyboard```.
     */
     'global'?: boolean;
+    /**
+    * Inputs can have a dom property ```data-layout="{something}"``` that allows them to pass the name of a layout back to the keyboard component. If the keyboard detects that the current input has a different 'data-layout' property than the previous input, it will fire this event, which provides the name of the new layout specified on the current input's ```data-layout``` dom property.
+    */
+    'onLayoutChange'?: (event: CustomEvent<string | null>) => void;
   }
   interface RegKeyboardButton {
     /**

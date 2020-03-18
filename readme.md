@@ -4,7 +4,7 @@
 These are building blocks for making efficient user-interfaces that utilize virtual keyboard components to handle user input. They are composable, and allow for both a global keyboard, and contextual keyboards that simply need to share a parent element.
 
 **example:**
-```
+```html
 <input class="global-keyboard" name="test-input" />
 <div style="padding: 24px; background: #f1f1f1">
   <!-- Isolated Keyboard (only handles inputs within this parent) -->

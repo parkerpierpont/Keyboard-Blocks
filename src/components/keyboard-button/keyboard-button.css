@@ -1,0 +1,39 @@
+.keyboardButton-root {
+  display: inline-block;
+
+  width: auto;
+
+  user-select: none;
+  pointer-events: auto;
+}
+
+.keyboardButton-nativeButton {
+  padding: 8px;
+  margin: 0;
+  border: 0;
+  background: transparent;
+
+
+  display: block;
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  outline: none;
+
+  contain: layout style;
+  cursor: pointer;
+
+  z-index: 0;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+.keyboardButton-nativeButton:focus {
+  outline: none;
+}
+
+.keyboardButton-nativeButton::-moz-focus-inner {
+  border: 0;
+}

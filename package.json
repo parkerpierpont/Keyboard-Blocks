@@ -1,6 +1,6 @@
 {
   "name": "@register-ui/keyboard-base",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "description": "Virtual Keyboard Building Blocks",
   "main": "dist/index.js",
@@ -25,5 +25,8 @@
   "devDependencies": {
     "@stencil/core": "^1.8.8"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "resize-observer-polyfill": "^1.5.1"
+  }
 }

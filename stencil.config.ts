@@ -8,7 +8,8 @@ export const config: Config = {
       esmLoaderPath: '../loader'
     },
     {
-      type: 'docs-readme'
+      type: 'docs-readme',
+      footer: '*Keyboard-Blocks Web Component Library* - 2020',
     },
     {
       type: 'www',

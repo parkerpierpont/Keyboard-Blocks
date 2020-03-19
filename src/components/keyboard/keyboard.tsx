@@ -1,5 +1,5 @@
-import { Host, Component, State, Listen, h, Prop, Event, EventEmitter } from '@stencil/core';
-
+import { Host, Element, Component, State, Listen, h, Prop, Event, EventEmitter } from '@stencil/core';
+import ResizeObserver from "resize-observer-polyfill";
 @Component({
   tag: 'reg-keyboard',
   styleUrl: 'keyboard.css',
@@ -10,6 +10,10 @@ export class MyComponent {
   selectionStart: number | null;
 
   selectionEnd: number | null;
+
+  resizeObserver: ResizeObserver;
+
+  @Element() hostElement: HTMLRegKeyboardElement;
 
   @State() focusedInput: HTMLInputElement | null = null;
   @State() layout: string | null = null;
@@ -31,7 +35,7 @@ export class MyComponent {
 
   /**
    * When the keyboard becomes active or inactive, this event will fire to
-   * alert whether the keyboard is currently 'in use / open' (true) or not (false).
+   * alert whether the keyboard is currently'in use / open' (true) or not (false).
    */
   @Event() openChange: EventEmitter<boolean>;
 
@@ -97,6 +101,28 @@ export class MyComponent {
       this.focusedInput.selectionStart = pos;
       this.focusedInput.selectionEnd = pos;
     })
+  }
+
+  componentDidLoad() {
+    this.resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        // @ts-ignore
+        if (entry.contentBoxSize) {
+          // @ts-ignore
+          const size = entry.contentBoxSize.inlineSize;
+          this.hostElement.style.setProperty("--keyboard-width", String(size + 'px'));
+        } else {
+          const size = entry.contentRect.width;
+          this.hostElement.style.setProperty("--keyboard-width", String(size + 'px'));
+        }
+      }
+    });
+
+    this.resizeObserver.observe(this.hostElement);
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver.unobserve(this.hostElement);
   }
 
   @Listen('keyboardButtonPress')

@@ -67,7 +67,7 @@ declare namespace LocalJSX {
     */
     'onLayoutChange'?: (event: CustomEvent<string | null>) => void;
     /**
-    * When the keyboard becomes active or inactive, this event will fire to alert whether the keyboard is currently 'in use / open' (true) or not (false).
+    * When the keyboard becomes active or inactive, this event will fire to alert whether the keyboard is currently'in use / open' (true) or not (false).
     */
     'onOpenChange'?: (event: CustomEvent<boolean>) => void;
   }

@@ -24,4 +24,4 @@ This component is to be placed within a ```reg-keyboard``` element. When pressed
 
 ----------------------------------------------
 
-*Built with [StencilJS](https://stenciljs.com/)*
+*Keyboard-Blocks Web Component Library* - 2020

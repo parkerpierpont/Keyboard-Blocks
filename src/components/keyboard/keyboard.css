@@ -1,1 +1,4 @@
 
+/**
+ * @prop --keyboard-width: This property will be added to the keyboard component to give a pixel value for the current total width of the keyboard. This will assist in your ability to accurately size keyboard keys.
+*/

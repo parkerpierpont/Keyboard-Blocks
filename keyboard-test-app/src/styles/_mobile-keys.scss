@@ -1,0 +1,72 @@
+.keyboard-layout-container.layout-mobile {
+  width: 100%;
+  position: relative;
+  display: block;
+
+  &.layout-mobile-default,
+  &.layout-mobile-shift {
+    
+    .keyboard-row {
+      display: flex;
+      flex: auto;
+      flex-direction: row;
+      box-sizing: border-box;
+
+      // &:nth-of-type(1) {
+      //   background-color: red;
+      // }
+
+      // &:nth-of-type(2) {
+      //   background-color: lightblue;
+      // }
+      
+      // &:nth-of-type(3) {
+      //   background-color: lightsalmon;
+      // }
+      
+      // &:nth-of-type(3) {
+      //   background-color: lightgreen;
+      // }
+      
+      // &:nth-of-type(4) {
+      //   background-color: orange;
+      // }
+    }
+
+    .keyboardButton {
+      &-root {
+        background-color: white;
+        margin: calc(.03 * var(--keyboard-width));
+        border-radius: 8px;
+        flex: auto;
+        // max-width: calc(100% / 10 - (10 * .3%));
+        box-shadow: 0px 1px rgba(0, 0, 0, 0.4);
+        position: relative;
+      }
+      
+      &-nativeButton {
+        $font-size: 16px;
+        $padding: 16px;
+        font-family: 'Inter';
+        font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+        font-variant-ligatures: contextual common-ligatures;
+        padding: 0;
+        font-size: 16px;
+        line-height: 1;
+        min-height: calc(#{$font-size} + (#{$padding} * 2));
+        vertical-align: middle;
+      }
+      
+      &-root-shift, &-root-backspace {
+        background-color: #AAADB7;
+      }
+      
+      &-shift, &-backspace {
+        font-family: "Inter", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+    }
+  }
+}

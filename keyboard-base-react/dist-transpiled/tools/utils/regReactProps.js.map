@@ -1,0 +1,1 @@
+{"version":3,"file":"regReactProps.js","sourceRoot":"","sources":["../../../src/tools/utils/regReactProps.ts"],"names":[],"mappings":"","sourcesContent":["export interface regReactProps {\n  class?: string\n  style?: { [key: string]: any }\n}\n"]}

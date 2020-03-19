@@ -1,6 +1,6 @@
 {
   "name": "@register-ui/keyboard-base",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "private": false,
   "description": "Virtual Keyboard Building Blocks",
   "main": "dist/index.js",
@@ -10,20 +10,21 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
+  "self-contained": "dist/custom-elements-bundle/index.mjs",
   "unpkg": "dist/register-keyboard/register-keyboard.js",
   "files": [
     "dist/",
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
+    "build": "stencil build --prod --docs",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
   "devDependencies": {
-    "@stencil/core": "^1.8.8"
+    "@stencil/core": "^1.10.1"
   },
   "license": "MIT",
   "dependencies": {

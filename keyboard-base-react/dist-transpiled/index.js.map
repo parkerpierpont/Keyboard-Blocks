@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,MAAM,mCAAmC,CAAC;AACzE,cAAc,SAAS,CAAA;AAEvB,oBAAoB,CAAC,MAAM,CAAC,CAAC","sourcesContent":["import { defineCustomElements } from '@register-ui/keyboard-base/loader';\nexport * from './tools'\n\ndefineCustomElements(window);"]}

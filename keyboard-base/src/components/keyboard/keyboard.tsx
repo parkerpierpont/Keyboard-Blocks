@@ -106,13 +106,16 @@ export class MyComponent {
   componentDidLoad() {
     this.resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
-        const size = entry.contentRect.width;
-        this.hostElement.style.setProperty("--keyboard-width", Math.round(size) + 'px');
+        const width = entry.contentRect.width;
+        const height = entry.contentRect.height;
+        this.hostElement.style.setProperty("--keyboard-width", Math.round(width) + 'px');
+        this.hostElement.style.setProperty("--keyboard-height", Math.round(height) + 'px');
       }
     });
 
     const initialSize = this.hostElement.getBoundingClientRect();
     this.hostElement.style.setProperty("--keyboard-width", String(Math.round(initialSize.width) + 'px'));
+    this.hostElement.style.setProperty("--keyboard-height", String(Math.round(initialSize.height) + 'px'));
 
     this.resizeObserver.observe(this.hostElement);
   }

@@ -1,0 +1,40 @@
+{
+  "name": "@register-ui/keyboard-base-react",
+  "version": "0.0.2",
+  "description": "React @register-ui keyboard-base components",
+  "scripts": {
+    "build": "npm run proxies.hydrate && npm run clean && npm run compile && node scripts/copy.js",
+    "compile": "npm run tsc && rollup -c",
+    "clean": "rm -rf dist && rm -rf dist-transpiled",
+    "tsc": "tsc -p .",
+    "proxies.hydrate": "node scripts/generateProxiesFile.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist/*",
+    "css/*.css"
+  ],
+  "dependencies": {
+    "@register-ui/keyboard-base": "0.0.11",
+    "tslib": "*"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "7.1.1",
+    "@rollup/plugin-virtual": "2.0.1",
+    "@types/node": "12.12.2",
+    "@types/react": "16.9.19",
+    "@types/react-dom": "16.9.5",
+    "fs-extra": "8.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "rollup": "1.31.0",
+    "rollup-plugin-sourcemaps": "0.5.0",
+    "typescript": "3.7.5"
+  }
+}

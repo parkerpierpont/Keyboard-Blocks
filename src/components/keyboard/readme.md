@@ -21,3 +21,5 @@ This component is can handle inputs both globally, as well as scoping itself to 
 
 
 ----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

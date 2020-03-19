@@ -13,9 +13,10 @@ export class KeyboardButton {
    * - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop.
    * - delete: removes characters from the input string. The number of characters
    * removed is defined by the ```deleteValue``` prop.
-   * - function: executes a custom function passed to the ```customFunction``` prop.
+   * - none: has no default add or delete actions. You will need to handle custom behavior when the
+   * ```pressed``` event fires.
    */
-  @Prop() pressAction: 'add' | 'delete' | 'function';
+  @Prop() pressAction: 'add' | 'delete' | 'none';
 
   /**
    * The value that is added to the end of the input if the ```onPressAction``` prop is set to 'add'.
@@ -34,7 +35,7 @@ export class KeyboardButton {
   @Prop() buttonName: string;
 
   /**
-   * This event will fire if the ```onPressAction``` prop is set to 'function';
+   * This event will fire when the button is pressed;
    */
   @Event() pressed: EventEmitter<string>;
 
@@ -42,12 +43,11 @@ export class KeyboardButton {
   @Event() keyboardButtonPress: EventEmitter<{ action: 'add', value: string } | { action: 'delete', value: number | 'clear' }>;
 
   handleClick = (_e: MouseEvent) => {
+    this.pressed.emit(this.buttonName);
     if (this.pressAction === 'add') {
       this.keyboardButtonPress.emit({ action: 'add', value: this.addValue });
     } else if (this.pressAction === 'delete') {
       this.keyboardButtonPress.emit({ action: 'delete', value: this.deleteValue });
-    } else if (this.pressAction === "function") {
-      this.pressed.emit(this.buttonName);
     } else {
       return;
     }

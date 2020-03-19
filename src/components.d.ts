@@ -30,9 +30,9 @@ export namespace Components {
     */
     'deleteValue': number | 'clear';
     /**
-    * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - function: executes a custom function passed to the ```customFunction``` prop.
+    * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - none: has no default add or delete actions. You will need to handle custom behavior when the ```pressed``` event fires.
     */
-    'pressAction': 'add' | 'delete' | 'function';
+    'pressAction': 'add' | 'delete' | 'none';
   }
 }
 
@@ -86,13 +86,13 @@ declare namespace LocalJSX {
     'deleteValue'?: number | 'clear';
     'onKeyboardButtonPress'?: (event: CustomEvent<{ action: 'add', value: string } | { action: 'delete', value: number | 'clear' }>) => void;
     /**
-    * This event will fire if the ```onPressAction``` prop is set to 'function';
+    * This event will fire when the button is pressed;
     */
     'onPressed'?: (event: CustomEvent<string>) => void;
     /**
-    * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - function: executes a custom function passed to the ```customFunction``` prop.
+    * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - none: has no default add or delete actions. You will need to handle custom behavior when the ```pressed``` event fires.
     */
-    'pressAction'?: 'add' | 'delete' | 'function';
+    'pressAction'?: 'add' | 'delete' | 'none';
   }
 
   interface IntrinsicElements {

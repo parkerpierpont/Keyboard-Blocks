@@ -24,7 +24,7 @@ These are building blocks for making efficient user-interfaces that utilize virt
 ```
 
 ## Keyboard Component
-[Keyboard Component Documentation](./tree/master/src/components/keyboard)
+[Keyboard Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/src/components/keyboard)
 
 ## Keyboard-Button Component
-[Keyboard-Button Component Documentation](./tree/master/src/components/keyboard-button)
+[Keyboard-Button Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/src/components/keyboard-button)

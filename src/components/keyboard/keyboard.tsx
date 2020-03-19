@@ -106,17 +106,13 @@ export class MyComponent {
   componentDidLoad() {
     this.resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
-        // @ts-ignore
-        if (entry.contentBoxSize) {
-          // @ts-ignore
-          const size = entry.contentBoxSize.inlineSize;
-          this.hostElement.style.setProperty("--keyboard-width", String(size + 'px'));
-        } else {
-          const size = entry.contentRect.width;
-          this.hostElement.style.setProperty("--keyboard-width", String(size + 'px'));
-        }
+        const size = entry.contentRect.width;
+        this.hostElement.style.setProperty("--keyboard-width", Math.round(size) + 'px');
       }
     });
+
+    const initialSize = this.hostElement.getBoundingClientRect();
+    this.hostElement.style.setProperty("--keyboard-width", String(Math.round(initialSize.width) + 'px'));
 
     this.resizeObserver.observe(this.hostElement);
   }

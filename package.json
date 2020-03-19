@@ -1,6 +1,6 @@
 {
   "name": "@register-ui/keyboard-base",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "description": "Virtual Keyboard Building Blocks",
   "main": "dist/index.js",

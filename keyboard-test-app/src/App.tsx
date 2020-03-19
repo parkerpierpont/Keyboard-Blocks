@@ -8,6 +8,7 @@ export default function App() {
       <div>
         <input type="text" className="global-keyboard" />
       </div>
+
       <GlobalKeyboardPage />
     </div>
   );

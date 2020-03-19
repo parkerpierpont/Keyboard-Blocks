@@ -1,11 +1,11 @@
 {
-  "name": "keyboard-building-blocks-react",
+  "name": "keyboard-building-blocks-test-app",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
-    "@register-ui/keyboard-base-react": "0.0.1",
+    "@register-ui/keyboard-base-react": "0.0.2",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

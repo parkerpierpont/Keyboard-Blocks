@@ -26,10 +26,6 @@ export namespace Components {
     */
     'buttonName': string;
     /**
-    * The custom function to execute if the ```onPressAction``` prop is set to 'function';
-    */
-    'customFunction': () => void | null;
-    /**
     * The number of chars that are removed at the end of the input if the ```onPressAction``` prop is set to 'delete'. Can also be set to 'clear' which will delete the whole input field.
     */
     'deleteValue': number | 'clear';
@@ -70,6 +66,10 @@ declare namespace LocalJSX {
     * Inputs can have a dom property ```data-layout="{something}"``` that allows them to pass the name of a layout back to the keyboard component. If the keyboard detects that the current input has a different 'data-layout' property than the previous input, it will fire this event, which provides the name of the new layout specified on the current input's ```data-layout``` dom property.
     */
     'onLayoutChange'?: (event: CustomEvent<string | null>) => void;
+    /**
+    * When the keyboard becomes active or inactive, this event will fire to alert whether the keyboard is currently 'in use / open' (true) or not (false).
+    */
+    'onOpenChange'?: (event: CustomEvent<boolean>) => void;
   }
   interface RegKeyboardButton {
     /**
@@ -81,14 +81,14 @@ declare namespace LocalJSX {
     */
     'buttonName'?: string;
     /**
-    * The custom function to execute if the ```onPressAction``` prop is set to 'function';
-    */
-    'customFunction'?: () => void | null;
-    /**
     * The number of chars that are removed at the end of the input if the ```onPressAction``` prop is set to 'delete'. Can also be set to 'clear' which will delete the whole input field.
     */
     'deleteValue'?: number | 'clear';
     'onKeyboardButtonPress'?: (event: CustomEvent<{ action: 'add', value: string } | { action: 'delete', value: number | 'clear' }>) => void;
+    /**
+    * This event will fire if the ```onPressAction``` prop is set to 'function';
+    */
+    'onPressed'?: (event: CustomEvent<string>) => void;
     /**
     * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - function: executes a custom function passed to the ```customFunction``` prop.
     */

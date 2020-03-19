@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 
 @Component({
@@ -18,11 +18,6 @@ export class KeyboardButton {
   @Prop() pressAction: 'add' | 'delete' | 'function';
 
   /**
-   * The custom function to execute if the ```onPressAction``` prop is set to 'function';
-   */
-  @Prop() customFunction: () => void | null = null;
-
-  /**
    * The value that is added to the end of the input if the ```onPressAction``` prop is set to 'add'.
    */
   @Prop() addValue: string = '';
@@ -38,7 +33,10 @@ export class KeyboardButton {
    */
   @Prop() buttonName: string;
 
-  @State() customOnClick: () => void;
+  /**
+   * This event will fire if the ```onPressAction``` prop is set to 'function';
+   */
+  @Event() pressed: EventEmitter<string>;
 
 
   @Event() keyboardButtonPress: EventEmitter<{ action: 'add', value: string } | { action: 'delete', value: number | 'clear' }>;
@@ -49,7 +47,7 @@ export class KeyboardButton {
     } else if (this.pressAction === 'delete') {
       this.keyboardButtonPress.emit({ action: 'delete', value: this.deleteValue });
     } else if (this.pressAction === "function") {
-      this.customOnClick();
+      this.pressed.emit(this.buttonName);
     } else {
       return;
     }

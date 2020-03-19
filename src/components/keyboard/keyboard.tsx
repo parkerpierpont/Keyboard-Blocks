@@ -29,6 +29,12 @@ export class MyComponent {
    */
   @Event() layoutChange: EventEmitter<string | null>;
 
+  /**
+   * When the keyboard becomes active or inactive, this event will fire to
+   * alert whether the keyboard is currently 'in use / open' (true) or not (false).
+   */
+  @Event() openChange: EventEmitter<boolean>;
+
   @Listen('focusin', { target: 'window' })
   onFocusElement(e: FocusEvent) {
     if (this.global !== true) return;
@@ -67,12 +73,14 @@ export class MyComponent {
       layout = e.target.dataset.layout;
     }
     this.layoutChange.emit(layout);
+    this.openChange.emit(true);
     this.layout = layout;
     this.focusedInput = input;
   }
 
   onFocusOutElement(e: FocusEvent) {
     this.focusedInput = null;
+    this.openChange.emit(false);
     e.target.removeEventListener('blur', this.onFocusOutElement);
     e.target.removeEventListener('input', this.onFocusedInputChange);
   }

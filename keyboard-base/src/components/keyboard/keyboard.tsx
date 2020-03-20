@@ -13,6 +13,8 @@ export class MyComponent {
 
   resizeObserver: ResizeObserver;
 
+  keyboardId: number = keyboardIds++;
+
   @Element() hostElement: HTMLRegKeyboardElement;
 
   @State() focusedInput: HTMLInputElement | null = null;
@@ -68,7 +70,7 @@ export class MyComponent {
     if (!(e.target.classList.contains('local-keyboard'))) return;
     const input = e.target;
     input.addEventListener('input', this.onFocusedInputChange);
-    input.addEventListener('blur', this.onFocusOutElement);
+    input.addEventListener('focusout', this.onFocusOutElement);
     this.selectionStart = input.selectionStart;
     this.selectionEnd = input.selectionEnd;
     let layout = null;
@@ -84,9 +86,9 @@ export class MyComponent {
 
   onFocusOutElement(e: FocusEvent) {
     this.focusedInput = null;
-    this.openChange.emit(false);
-    e.target.removeEventListener('blur', this.onFocusOutElement);
-    e.target.removeEventListener('input', this.onFocusedInputChange);
+    this.openChange?.emit(false);
+    e.target?.removeEventListener('blur', this.onFocusOutElement);
+    e.target?.removeEventListener('input', this.onFocusedInputChange);
   }
 
   onFocusedInputChange = (e: InputEvent) => {
@@ -118,6 +120,43 @@ export class MyComponent {
     this.hostElement.style.setProperty("--keyboard-height", String(Math.round(initialSize.height) + 'px'));
 
     this.resizeObserver.observe(this.hostElement);
+
+    if (document?.activeElement) {
+      if (!(document.activeElement instanceof HTMLInputElement)) return;
+      const target: HTMLInputElement = document.activeElement as HTMLInputElement;
+      let shouldAttach: boolean = false;
+      if (target.classList.contains('local-keyboard') && this.global !== true) {
+        const parentEl = this.focusedInput.parentElement;
+        const searchClass = `keyboard-parent-${this.keyboardId}`;
+        parentEl.classList.add(searchClass);
+        if (target.closest(searchClass)) {
+          parentEl.classList.remove(searchClass);
+          shouldAttach = true;
+        }
+      }
+
+      if (target.classList.contains('global-keyboard') && this.global === true) {
+        shouldAttach = true;
+      }
+
+      if (shouldAttach) {
+        const input = target;
+        input.addEventListener('input', this.onFocusedInputChange);
+        input.addEventListener('focusout', this.onFocusOutElement);
+        this.selectionStart = input.selectionStart;
+        this.selectionEnd = input.selectionEnd;
+        let layout = null;
+
+        if (target.dataset?.layout) {
+          layout = target.dataset.layout;
+        }
+
+        this.layoutChange.emit(layout);
+        this.openChange.emit(true);
+        this.layout = layout;
+        this.focusedInput = input;
+      }
+    }
   }
 
   disconnectedCallback() {
@@ -186,3 +225,4 @@ export class MyComponent {
     );
   }
 }
+let keyboardIds = 0;

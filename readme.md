@@ -37,10 +37,10 @@ import { Keyboard, KeyboardButton } from "@register-ui/keyboard-base-react";
 
 export default function App() {
   return (
-    <input class="global-keyboard" name="test-input" />
+    <input className="global-keyboard" name="test-input" />
 
     <div style={{padding: 24, background: "#f1f1f1"}}>
-      <input class="local-keyboard" name="test-input-2" />
+      <input className="local-keyboard" name="test-input-2" />
       <br />
 
       {/* Isolated Keyboard (only handles inputs within this parent) */}

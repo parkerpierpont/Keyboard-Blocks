@@ -1,6 +1,6 @@
 {
   "name": "@register-ui/keyboard-base-react",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "React @register-ui keyboard-base components",
   "scripts": {
     "build": "npm run proxies.hydrate && npm run clean && npm run compile && node scripts/copy.js",

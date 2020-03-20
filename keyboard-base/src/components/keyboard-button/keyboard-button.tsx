@@ -43,13 +43,14 @@ export class KeyboardButton {
   @Event() keyboardButtonPress: EventEmitter<{ action: 'add', value: string } | { action: 'delete', value: number | 'clear' }>;
 
   handleClick = (_e: MouseEvent) => {
-    this.pressed.emit(this.buttonName);
     if (this.pressAction === 'add') {
       this.keyboardButtonPress.emit({ action: 'add', value: this.addValue });
+      this.pressed.emit(this.buttonName);
     } else if (this.pressAction === 'delete') {
       this.keyboardButtonPress.emit({ action: 'delete', value: this.deleteValue });
+      this.pressed.emit(this.buttonName);
     } else {
-      return;
+      this.pressed.emit(this.buttonName);
     }
   }
 

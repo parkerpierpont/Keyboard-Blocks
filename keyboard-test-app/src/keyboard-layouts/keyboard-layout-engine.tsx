@@ -135,60 +135,62 @@ export function KeyboardLayoutEngine(props: {
   });
 
   return (
-    <div className={`keyboard-layout-container ${layout}`}>
-      {keyArray.map(keyRow => (
-        <div className="keyboard-row">
-          {keyRow.map((keyboardKey: KeyboardButtonProps) => {
-            const getProperties = () => {
-              let keyProps = {};
-              if (keyboardKey.pressAction === "add") {
-                const { addValue, pressAction, buttonName } = keyboardKey;
-                keyProps = {
-                  addValue,
-                  pressAction,
-                  buttonName,
-                  onPressed: () => {
-                    if (caseState === "shift") {
-                      window.requestAnimationFrame(() => {
-                        setCaseState(null);
-                      });
+    <>
+      <div className={`keyboard-layout-container ${layout}`}>
+        {keyArray.map(keyRow => (
+          <div className="keyboard-row">
+            {keyRow.map((keyboardKey: KeyboardButtonProps) => {
+              const getProperties = () => {
+                let keyProps = {};
+                if (keyboardKey.pressAction === "add") {
+                  const { addValue, pressAction, buttonName } = keyboardKey;
+                  keyProps = {
+                    addValue,
+                    pressAction,
+                    buttonName,
+                    onPressed: () => {
+                      if (caseState === "shift") {
+                        window.requestAnimationFrame(() => {
+                          setCaseState(null);
+                        });
+                      }
                     }
-                  }
-                };
-                return keyProps;
-              } else if (keyboardKey.pressAction === "delete") {
-                const { deleteValue, pressAction, buttonName } = keyboardKey;
-                keyProps = {
-                  deleteValue,
-                  pressAction,
-                  buttonName,
-                  onPressed: () => {
-                    if (caseState === "shift") {
-                      window.requestAnimationFrame(() => {
-                        setCaseState(null);
-                      });
+                  };
+                  return keyProps;
+                } else if (keyboardKey.pressAction === "delete") {
+                  const { deleteValue, pressAction, buttonName } = keyboardKey;
+                  keyProps = {
+                    deleteValue,
+                    pressAction,
+                    buttonName,
+                    onPressed: () => {
+                      if (caseState === "shift") {
+                        window.requestAnimationFrame(() => {
+                          setCaseState(null);
+                        });
+                      }
                     }
-                  }
-                };
-                return keyProps;
-              } else {
-                const { onPressed, buttonName, pressAction } = keyboardKey;
-                return { onPressed, buttonName, pressAction };
-              }
-            };
-            const keyProps = getProperties();
-            return (
-              <>
-                <KeyboardButton {...keyProps}>
-                  <span
-                    dangerouslySetInnerHTML={{ __html: keyboardKey.innerHtml }}
-                  />
-                </KeyboardButton>
-              </>
-            );
-          })}
-        </div>
-      ))}
-    </div>
+                  };
+                  return keyProps;
+                } else {
+                  const { onPressed, buttonName, pressAction } = keyboardKey;
+                  return { onPressed, buttonName, pressAction };
+                }
+              };
+              const keyProps = getProperties();
+              return (
+                <>
+                  <KeyboardButton {...keyProps}>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: keyboardKey.innerHtml }}
+                    />
+                  </KeyboardButton>
+                </>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

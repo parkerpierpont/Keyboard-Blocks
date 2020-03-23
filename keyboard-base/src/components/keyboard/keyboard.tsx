@@ -36,6 +36,12 @@ export class MyComponent {
   @Prop() global: boolean = true;
 
   /**
+   * If set to true, and an input is put within the bounds of this keyboard,
+   * a press of a keyboard button will trigger focus on the keyboard element.
+   */
+  @Prop() inputWithin: boolean = false;
+
+  /**
    * Inputs can have a dom property ```data-layout="{something}"``` that allows them to
    * pass the name of a layout back to the keyboard component. If the keyboard detects that
    * the current input has a different 'data-layout' property than the previous input, it will
@@ -52,6 +58,7 @@ export class MyComponent {
 
   @Listen("focusin", { target: "window" })
   onFocusElement(e: FocusEvent) {
+    if (this.inputWithin) return;
     if (this.global !== true) return;
     e.preventDefault();
     if (!(e.target instanceof HTMLInputElement)) return;
@@ -71,6 +78,7 @@ export class MyComponent {
 
   @Listen("focusin", { target: "parent" })
   onFocusParentElement(e: FocusEvent) {
+    if (this.inputWithin) return;
     if (this.global === true) return;
     e.preventDefault();
     if (!(e.target instanceof HTMLInputElement)) return;
@@ -195,6 +203,22 @@ export class MyComponent {
     this.resizeObserver.unobserve(this.hostElement);
   }
 
+  @Listen("keyboardButtonWillPress")
+  handleKeyboardButtonWillPress() {
+    if (this.inputWithin && !this.focusedInput) {
+      const input = this.hostElement.querySelector("input") as HTMLInputElement;
+      this.selectionStart = input.selectionStart;
+      this.selectionEnd = input.selectionEnd;
+      input.addEventListener("input", this.onFocusedInputChange);
+      input.addEventListener("focusout", this.onFocusOutElement);
+
+      if (input) {
+        this.focusedInput = input;
+        this.focusedInput.focus();
+      }
+    }
+  }
+
   @Listen("keyboardButtonPress")
   handleRegKeyboardButtonPress(
     e: CustomEvent<
@@ -202,7 +226,6 @@ export class MyComponent {
       | { action: "delete"; value: number | "clear" }
     >
   ) {
-    console.log(e.detail.action, e.detail.value);
     if (e.detail.action === "add") {
       this.onKeyboardButtonPressAdd(e.detail.value);
     } else if (e.detail.action === "delete") {

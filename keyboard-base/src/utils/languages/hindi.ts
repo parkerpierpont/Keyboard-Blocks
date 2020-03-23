@@ -1,4 +1,4 @@
-import { KeyboardSymbol } from "../../../utils/keyboard-interfaces";
+import { KeyboardSymbol } from "../keyboard-interfaces";
 const hindi: KeyboardSymbol = {
   default: [
     "` \u090D \u0945 \u094D\u0930 \u0930\u094D \u091C\u094D\u091E \u0924\u094D\u0930 \u0915\u094D\u0937 \u0936\u094D\u0930 \u096F \u0966 - \u0943 {bksp}",

@@ -19,25 +19,25 @@ export interface KeyboardButtonProps {
 export type keyboardLanguage = keyof KeyboardLanguageMap;
 
 export interface KeyboardLanguageMap {
-  arabic: string;
-  burmese: string;
-  english: string;
-  farsi: string;
-  french: string;
-  georgian: string;
-  german: string;
-  hebrew: string;
-  hindi: string;
-  italian: string;
-  japanese: string;
-  kannada: string;
-  korean: string;
-  russian: string;
-  sindhi: string;
-  spanish: string;
-  swedish: string;
-  thai: string;
-  turkish: string;
-  ukrainian: string;
-  urdu: string;
+  arabic: KeyboardSymbol;
+  burmese: KeyboardSymbol;
+  english: KeyboardSymbol;
+  farsi: KeyboardSymbol;
+  french: KeyboardSymbol;
+  georgian: KeyboardSymbol;
+  german: KeyboardSymbol;
+  hebrew: KeyboardSymbol;
+  hindi: KeyboardSymbol;
+  italian: KeyboardSymbol;
+  japanese: KeyboardSymbol;
+  kannada: KeyboardSymbol;
+  korean: KeyboardSymbol;
+  russian: KeyboardSymbol;
+  sindhi: KeyboardSymbol;
+  spanish: KeyboardSymbol;
+  swedish: KeyboardSymbol;
+  thai: KeyboardSymbol;
+  turkish: KeyboardSymbol;
+  ukrainian: KeyboardSymbol;
+  urdu: KeyboardSymbol;
 }

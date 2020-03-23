@@ -1,4 +1,4 @@
-import { KeyboardSymbol } from "../../../utils/keyboard-interfaces";
+import { KeyboardSymbol } from "../keyboard-interfaces";
 const sindhi: KeyboardSymbol = {
   default: [
     "` \u0661 \u0662 \u0663 \u0664 \u0665 \u0666 \u0667 \u0668 \u0669 \u0660 - = {bksp}",

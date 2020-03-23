@@ -42,6 +42,11 @@ export class KeyboardButton {
    */
   @Event() pressed: EventEmitter<string>;
 
+  /**
+   * This event will fire on keyboard-button mouse-down;
+   */
+  @Event() keyboardButtonWillPress: EventEmitter<void>;
+
   @Event() keyboardButtonPress: EventEmitter<
     | { action: "add"; value: string }
     | { action: "delete"; value: number | "clear" }
@@ -62,6 +67,11 @@ export class KeyboardButton {
     }
   };
 
+  handleMouseDown = (e: MouseEvent) => {
+    e.preventDefault();
+    this.keyboardButtonWillPress.emit();
+  };
+
   render() {
     return (
       <Host
@@ -76,7 +86,7 @@ export class KeyboardButton {
             [`keyboardButton-${this.buttonName}`]: !!this.buttonName
           }}
           onClick={this.handleClick}
-          onMouseDown={e => e.preventDefault()}
+          onMouseDown={this.handleMouseDown}
         >
           {this.text && this.text}
           <slot></slot>

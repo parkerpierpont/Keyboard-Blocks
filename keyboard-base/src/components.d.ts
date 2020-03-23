@@ -13,6 +13,10 @@ export namespace Components {
           * If true, this keyboard will listen and attempt to control any input that has the class ```global-keyboard```. If false, this keyboard will listen and attempt to control any input beneath the current parent element of this component that has the class ```local-keyboard```.
          */
         "global": boolean;
+        /**
+          * If set to true, and an input is put within the bounds of this keyboard, a press of a keyboard button will trigger focus on the keyboard element.
+         */
+        "inputWithin": boolean;
     }
     interface RegKeyboardButton {
         /**
@@ -89,6 +93,10 @@ declare namespace LocalJSX {
          */
         "global"?: boolean;
         /**
+          * If set to true, and an input is put within the bounds of this keyboard, a press of a keyboard button will trigger focus on the keyboard element.
+         */
+        "inputWithin"?: boolean;
+        /**
           * Inputs can have a dom property ```data-layout="{something}"``` that allows them to pass the name of a layout back to the keyboard component. If the keyboard detects that the current input has a different 'data-layout' property than the previous input, it will fire this event, which provides the name of the new layout specified on the current input's ```data-layout``` dom property.
          */
         "onLayoutChange"?: (event: CustomEvent<string | null>) => void;
@@ -117,6 +125,10 @@ declare namespace LocalJSX {
             action: "delete";
             value: number | "clear";
         }>) => void;
+        /**
+          * This event will fire on keyboard-button mouse-down;
+         */
+        "onKeyboardButtonWillPress"?: (event: CustomEvent<void>) => void;
         /**
           * This event will fire when the button is pressed;
          */

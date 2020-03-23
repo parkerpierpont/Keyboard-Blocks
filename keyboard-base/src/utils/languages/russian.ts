@@ -1,4 +1,4 @@
-import { KeyboardSymbol } from "../../../utils/keyboard-interfaces";
+import { KeyboardSymbol } from "../keyboard-interfaces";
 const russian: KeyboardSymbol = {
   default: [
     "\u0451 1 2 3 4 5 6 7 8 9 0 - = {bksp}",

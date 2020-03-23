@@ -6,8 +6,7 @@ import {
   State,
   Prop,
   Watch,
-  Listen,
-  getAssetPath
+  Listen
 } from "@stencil/core";
 import {
   KeyboardSymbol,
@@ -18,12 +17,11 @@ import {
 } from "../../index";
 import { KeyboardButtonProps } from "../../utils/keyboard-interfaces";
 import ResizeObserver from "resize-observer-polyfill";
-import english from "./languages/english";
+import english from "../../utils/languages/english";
 
 @Component({
   tag: "reg-keyboard-layout",
-  styleUrl: "keyboard-layout.scss",
-  assetsDirs: ["languages"]
+  styleUrl: "keyboard-layout.scss"
 })
 export class KeyboardLayout {
   containerElement?: HTMLDivElement;
@@ -131,10 +129,7 @@ export class KeyboardLayout {
   }> => {
     if (language === "english") return createLayout(english);
     const languageFile = languageMapping[language];
-    const importedLanguage = await import(
-      getAssetPath(`./languages/${languageFile}`)
-    );
-    const lang = createLayout(importedLanguage.default as KeyboardSymbol);
+    const lang = createLayout(languageFile);
     return lang;
   };
 

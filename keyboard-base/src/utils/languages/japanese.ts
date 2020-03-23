@@ -1,4 +1,4 @@
-import { KeyboardSymbol } from "../../../utils/keyboard-interfaces";
+import { KeyboardSymbol } from "../keyboard-interfaces";
 const japanese: KeyboardSymbol = {
   default: [
     "\u308d \u306c \u3075 \u3042 \u3046 \u3048 \u304a \u3084 \u3086 \u3088 \u308f \u307b \u3078 {bksp}",

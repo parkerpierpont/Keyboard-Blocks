@@ -29,4 +29,4 @@ This component is can handle inputs both globally, as well as scoping itself to 
 
 ----------------------------------------------
 
-*Keyboard-Blocks Web Component Library* - 2020
+*Built with [StencilJS](https://stenciljs.com/)*

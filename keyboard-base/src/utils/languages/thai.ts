@@ -1,4 +1,4 @@
-import { KeyboardSymbol } from "../../../utils/keyboard-interfaces";
+import { KeyboardSymbol } from "../keyboard-interfaces";
 const thai: KeyboardSymbol = {
   default: [
     "\u005F \u0E45 \u002F \u002D \u0E20 \u0E16 \u0E38 \u0E36 \u0E04 \u0E05 \u0E08 \u0E02 \u0E0A {bksp}",

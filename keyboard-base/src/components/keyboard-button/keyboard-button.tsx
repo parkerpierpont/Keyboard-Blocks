@@ -1,13 +1,11 @@
-import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
-
+import { Component, Host, h, Prop, Event, EventEmitter } from "@stencil/core";
 
 @Component({
-  tag: 'reg-keyboard-button',
-  styleUrl: 'keyboard-button.css',
+  tag: "reg-keyboard-button",
+  styleUrl: "keyboard-button.css",
   shadow: false
 })
 export class KeyboardButton {
-
   /**
    * The kinds of functions that this button supports.
    * - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop.
@@ -16,17 +14,17 @@ export class KeyboardButton {
    * - none: has no default add or delete actions. You will need to handle custom behavior when the
    * ```pressed``` event fires.
    */
-  @Prop() pressAction: 'add' | 'delete' | 'none';
+  @Prop() pressAction: "add" | "delete" | "none";
 
   /**
    * The value that is added to the end of the input if the ```onPressAction``` prop is set to 'add'.
    */
-  @Prop() addValue: string = '';
+  @Prop() addValue: string = "";
 
   /**
    * The number of chars that are removed at the end of the input if the ```onPressAction``` prop is set to 'delete'. Can also be set to 'clear' which will delete the whole input field.
    */
-  @Prop() deleteValue: number | 'clear' = 1;
+  @Prop() deleteValue: number | "clear" = 1;
 
   /**
    * The name of the button. Sets custom classes on the button for custom styling.
@@ -35,35 +33,52 @@ export class KeyboardButton {
   @Prop() buttonName: string;
 
   /**
+   * Inner Text, if you want the button to render html strings automatically.
+   */
+  @Prop() text?: string;
+
+  /**
    * This event will fire when the button is pressed;
    */
   @Event() pressed: EventEmitter<string>;
 
-
-  @Event() keyboardButtonPress: EventEmitter<{ action: 'add', value: string } | { action: 'delete', value: number | 'clear' }>;
+  @Event() keyboardButtonPress: EventEmitter<
+    | { action: "add"; value: string }
+    | { action: "delete"; value: number | "clear" }
+  >;
 
   handleClick = (_e: MouseEvent) => {
-    if (this.pressAction === 'add') {
-      this.keyboardButtonPress.emit({ action: 'add', value: this.addValue });
+    if (this.pressAction === "add") {
+      this.keyboardButtonPress.emit({ action: "add", value: this.addValue });
       this.pressed.emit(this.buttonName);
-    } else if (this.pressAction === 'delete') {
-      this.keyboardButtonPress.emit({ action: 'delete', value: this.deleteValue });
+    } else if (this.pressAction === "delete") {
+      this.keyboardButtonPress.emit({
+        action: "delete",
+        value: this.deleteValue
+      });
       this.pressed.emit(this.buttonName);
     } else {
       this.pressed.emit(this.buttonName);
     }
-  }
+  };
 
   render() {
     return (
-      <Host class={{
-        "keyboardButton-root": true,
-        [`keyboardButton-root-${this.buttonName}`]: !!this.buttonName
-      }}>
-        <button class={{
-          "keyboardButton-nativeButton": true,
-          [`keyboardButton-${this.buttonName}`]: !!this.buttonName
-        }} onClick={this.handleClick} onMouseDown={(e) => e.preventDefault()}>
+      <Host
+        class={{
+          "keyboardButton-root": true,
+          [`keyboardButton-root-${this.buttonName}`]: !!this.buttonName
+        }}
+      >
+        <button
+          class={{
+            "keyboardButton-nativeButton": true,
+            [`keyboardButton-${this.buttonName}`]: !!this.buttonName
+          }}
+          onClick={this.handleClick}
+          onMouseDown={e => e.preventDefault()}
+        >
+          {this.text && this.text}
           <slot></slot>
         </button>
       </Host>

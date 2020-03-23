@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+    <script type="module" src="/build/register-keyboard.esm.js"></script>
+    <script nomodule src="/build/register-keyboard.js"></script>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
-  <script type="module" src="/build/register-keyboard.esm.js"></script>
-  <script nomodule src="/build/register-keyboard.js"></script>
-</head>
-
-<body>
-  <input class="global-keyboard" name="test-input" data-layout="normal" />
-  <div style="padding: 24px; background: #f1f1f1">
-    <div class="hello">
-      <input class="local-keyboard" name="test-input-1" />
-      <br />
-      <input class="local-keyboard" name="test-input-2" />
+  <body>
+    <input class="global-keyboard" name="test-input" data-layout="normal" />
+    <div style="padding: 24px; background: #f1f1f1">
+      <div class="hello">
+        <input class="local-keyboard" name="test-input-1" />
+        <br />
+        <input class="local-keyboard" name="test-input-2" />
+      </div>
+      <reg-keyboard global="false">
+        <reg-keyboard-button button-name="A" press-action="add" add-value="A"
+          >A</reg-keyboard-button
+        >
+      </reg-keyboard>
     </div>
-    <reg-keyboard global='false'>
-      <reg-keyboard-button button-name="A" press-action="add" add-value="A">A</reg-keyboard-button>
+    <reg-keyboard global="true" on-open-change="e => console.log(e)">
+      <reg-keyboard-layout language="german"></reg-keyboard-layout>
     </reg-keyboard>
-  </div>
-  <reg-keyboard global="true">
-    <reg-keyboard-button button-name="A" press-action="add" add-value="A">A</reg-keyboard-button>
-  </reg-keyboard>
-</body>
-
+  </body>
 </html>

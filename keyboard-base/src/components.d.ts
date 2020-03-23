@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { KeyboardButtonProps, } from "./utils/keyboard-interfaces";
+import { keyboardLanguage, KeyboardSymbol, } from "./index";
 export namespace Components {
     interface RegKeyboard {
         /**
@@ -29,6 +31,30 @@ export namespace Components {
           * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - none: has no default add or delete actions. You will need to handle custom behavior when the ```pressed``` event fires.
          */
         "pressAction": "add" | "delete" | "none";
+        /**
+          * Inner Text, if you want the button to render html strings automatically.
+         */
+        "text"?: string;
+    }
+    interface RegKeyboardLayout {
+        /**
+          * If you'd like to modify a certain key, you can create an object that has keys you'd like to modify.
+         */
+        "customKeys"?: {
+            [Key: string]: Omit<KeyboardButtonProps, "onPressed">;
+        };
+        /**
+          * If you'd like to use a different language than the build-in languages.
+         */
+        "customLanguageTemplate"?: KeyboardSymbol;
+        /**
+          * The language you'd like the keyboard to use (uses built-in language files).
+         */
+        "language": keyboardLanguage;
+        /**
+          * The type of keyboard layout you'd like to render
+         */
+        "layout": "condensed" | "condensedNumpad" | "desktop" | "numpad";
     }
 }
 declare global {
@@ -44,9 +70,16 @@ declare global {
         prototype: HTMLRegKeyboardButtonElement;
         new (): HTMLRegKeyboardButtonElement;
     };
+    interface HTMLRegKeyboardLayoutElement extends Components.RegKeyboardLayout, HTMLStencilElement {
+    }
+    var HTMLRegKeyboardLayoutElement: {
+        prototype: HTMLRegKeyboardLayoutElement;
+        new (): HTMLRegKeyboardLayoutElement;
+    };
     interface HTMLElementTagNameMap {
         "reg-keyboard": HTMLRegKeyboardElement;
         "reg-keyboard-button": HTMLRegKeyboardButtonElement;
+        "reg-keyboard-layout": HTMLRegKeyboardLayoutElement;
     }
 }
 declare namespace LocalJSX {
@@ -92,10 +125,35 @@ declare namespace LocalJSX {
           * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - none: has no default add or delete actions. You will need to handle custom behavior when the ```pressed``` event fires.
          */
         "pressAction"?: "add" | "delete" | "none";
+        /**
+          * Inner Text, if you want the button to render html strings automatically.
+         */
+        "text"?: string;
+    }
+    interface RegKeyboardLayout {
+        /**
+          * If you'd like to modify a certain key, you can create an object that has keys you'd like to modify.
+         */
+        "customKeys"?: {
+            [Key: string]: Omit<KeyboardButtonProps, "onPressed">;
+        };
+        /**
+          * If you'd like to use a different language than the build-in languages.
+         */
+        "customLanguageTemplate"?: KeyboardSymbol;
+        /**
+          * The language you'd like the keyboard to use (uses built-in language files).
+         */
+        "language"?: keyboardLanguage;
+        /**
+          * The type of keyboard layout you'd like to render
+         */
+        "layout"?: "condensed" | "condensedNumpad" | "desktop" | "numpad";
     }
     interface IntrinsicElements {
         "reg-keyboard": RegKeyboard;
         "reg-keyboard-button": RegKeyboardButton;
+        "reg-keyboard-layout": RegKeyboardLayout;
     }
 }
 export { LocalJSX as JSX };
@@ -104,6 +162,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "reg-keyboard": LocalJSX.RegKeyboard & JSXBase.HTMLAttributes<HTMLRegKeyboardElement>;
             "reg-keyboard-button": LocalJSX.RegKeyboardButton & JSXBase.HTMLAttributes<HTMLRegKeyboardButtonElement>;
+            "reg-keyboard-layout": LocalJSX.RegKeyboardLayout & JSXBase.HTMLAttributes<HTMLRegKeyboardLayoutElement>;
         }
     }
 }

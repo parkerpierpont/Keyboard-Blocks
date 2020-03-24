@@ -45,6 +45,6 @@ These are building blocks for making efficient user-interfaces that utilize virt
 
 ## Keyboard-Layout Component
 
-For pre-rolled, customizable keyboard languages, layouts, and styles.
+For pre-rolled, customizable keyboard languages, layouts, and styles!
 
 [Keyboard-Layout Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-layout)

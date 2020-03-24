@@ -10,7 +10,9 @@ These are building blocks for making efficient user-interfaces that utilize virt
 </head>
 <body>
   <input class="global-keyboard" name="test-input" />
-  <div style="padding: 24px; background: #eaeaea">
+  <div style="padding: 24px;
+
+ background: #eaeaea">
     <!-- Isolated Keyboard (only handles inputs within this parent) -->
 
     <input class="local-keyboard" name="test-input-2" />
@@ -34,10 +36,15 @@ These are building blocks for making efficient user-interfaces that utilize virt
 ```
 
 ## Keyboard Component
+
 [Keyboard Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard)
 
 ## Keyboard-Button Component
+
 [Keyboard-Button Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-button)
 
 ## Keyboard-Layout Component
+
+For pre-rolled, customizable keyboard languages, layouts, and styles.
+
 [Keyboard-Layout Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-layout)

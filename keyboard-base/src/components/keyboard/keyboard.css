@@ -3,9 +3,11 @@
 */
 
 .keyboardRoot {
-  width: 100%;
-  overflow: hidden;
   display: block;
   position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
   box-sizing: border-box;
 }

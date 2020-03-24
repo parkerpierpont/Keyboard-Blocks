@@ -180,7 +180,7 @@ export class KeyboardLayout {
   };
 
   fireAfterKeyPress = (keyName: string) => {
-    if (keyName !== "shift" && keyName !== "caps" && this.layoutState.shift) {
+    if (keyName !== "shift1" && keyName !== "shift2" && keyName !== "caps" && this.layoutState.shift) {
       this.layoutState = { ...this.layoutState, shift: false };
     }
   };
@@ -224,12 +224,30 @@ export class KeyboardLayout {
           pressAction: "none",
           text: "↩"
         };
-      case "{shift1}" || "{shift2}":
+      case "{shift}":
         return {
           onPressed: () => {
             this.handleCaseChangeKeyPress("shift");
           },
-          buttonName: "shift",
+          buttonName: "shift1",
+          pressAction: "none",
+          text: shift ? `⬆` : "⇧"
+        };
+      case "{shift1}":
+        return {
+          onPressed: () => {
+            this.handleCaseChangeKeyPress("shift");
+          },
+          buttonName: "shift1",
+          pressAction: "none",
+          text: shift ? `⬆` : "⇧"
+        };
+      case "{shift2}":
+        return {
+          onPressed: () => {
+            this.handleCaseChangeKeyPress("shift");
+          },
+          buttonName: "shift2",
           pressAction: "none",
           text: shift ? `⬆` : "⇧"
         };
@@ -255,6 +273,20 @@ export class KeyboardLayout {
           buttonName: "period",
           pressAction: "add",
           text: "."
+        };
+      case ".com":
+        return {
+          addValue: ".com",
+          buttonName: "com",
+          pressAction: "add",
+          text: ".com"
+        };
+      case "@":
+        return {
+          addValue: "@",
+          buttonName: "at",
+          pressAction: "add",
+          text: "@"
         };
       default:
         return {
@@ -330,7 +362,7 @@ export class KeyboardLayout {
           }}
           ref={el => (this.containerElement = el as HTMLDivElement)}
         >
-          {this.template && (
+          {(this.template && this.layout !== 'numpad') && (
             <div
               class={{
                 "keyboard-layout-keyboard": true,

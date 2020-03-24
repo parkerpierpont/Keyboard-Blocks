@@ -14,6 +14,10 @@ export const config: Config = {
       plugins: [autoprefixer(), rtl()]
     })
   ],
+  devServer: {
+    reloadStrategy: 'hmr',
+    openBrowser: true,
+  },
   outputTargets: [
     {
       type: "dist",

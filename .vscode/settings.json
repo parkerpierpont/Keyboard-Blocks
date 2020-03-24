@@ -42,5 +42,7 @@
    */
   "search.exclude": {
     "/node_modules": true
-  }
+  },
+  "scss.showErrors": true,
+  "stencilTools.style.extension": "scss"
 }

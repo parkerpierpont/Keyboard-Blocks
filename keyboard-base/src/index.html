@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
-    />
-    <title>Stencil Component Starter</title>
-    <script type="module" src="/build/register-keyboard.esm.js"></script>
-    <script nomodule src="/build/register-keyboard.js"></script>
-  </head>
 
-  <body>
-    <input class="global-keyboard" name="test-input" data-layout="normal" />
-    <div style="padding: 24px; background: #f1f1f1">
-      <div class="hello">
-        <input class="local-keyboard" name="test-input-1" />
-        <br />
-      </div>
-      <reg-keyboard global="false" input-within="true">
-        <input class="local-keyboard" name="test-input-2" />
-        <reg-keyboard-button button-name="A" press-action="add" add-value="A"
-          >A</reg-keyboard-button
-        >
-      </reg-keyboard>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+  <script type="module" src="/build/register-keyboard.esm.js"></script>
+  <script nomodule src="/build/register-keyboard.js"></script>
+</head>
+
+<body>
+  <input class="global-keyboard" name="test-input" data-layout="normal" />
+  <div style="padding: 24px;
+
+ background: #f1f1f1">
+    <div class="hello">
+      <input class="local-keyboard" name="test-input-1" />
+      <br />
     </div>
-    <reg-keyboard global="true" on-open-change="e => console.log(e)">
-      <reg-keyboard-layout language="german"></reg-keyboard-layout>
+    <reg-keyboard global="false" input-within="true">
+      <input class="local-keyboard" name="test-input-2" />
+      <reg-keyboard-button button-name="A" press-action="add" add-value="A">A</reg-keyboard-button>
     </reg-keyboard>
-  </body>
+  </div>
+  <reg-keyboard global="true">
+    <reg-keyboard-layout language="english" layout="condensedNumpad"></reg-keyboard-layout>
+  </reg-keyboard>
+  <br />
+  <br />
+  <reg-keyboard global="true">
+    <reg-keyboard-layout language="english" layout="desktop"></reg-keyboard-layout>
+  </reg-keyboard>
+  <br />
+  <br />
+  <reg-keyboard global="true">
+    <reg-keyboard-layout language="english" layout="numpad"></reg-keyboard-layout>
+  </reg-keyboard>
+  <br />
+  <br />
+  <reg-keyboard global="true">
+    <reg-keyboard-layout language="english" layout="condensed"></reg-keyboard-layout>
+  </reg-keyboard>
+</body>
+
 </html>

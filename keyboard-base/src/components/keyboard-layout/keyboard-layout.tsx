@@ -67,11 +67,29 @@ export class KeyboardLayout {
    * The language you'd like the keyboard to use (uses built-in language files).
    */
   @Prop() language: keyboardLanguage = "english";
+  @Watch('language')
+  async watchLanguageHandler(newValue: keyboardLanguage | undefined, oldValue: keyboardLanguage | undefined) {
+    if (newValue !== oldValue && !!newValue) {
+      const t = this.customLanguageTemplate
+        ? this.template
+        : await this.resolveLanguage(newValue);
+      this.template = t;
+    }
+  }
 
   /**
    * If you'd like to use a different language than the build-in languages.
    */
   @Prop() customLanguageTemplate?: KeyboardSymbol;
+  @Watch('language')
+  async watchLanguageTemplateHandler(newValue: KeyboardSymbol | undefined, oldValue: undefined | KeyboardSymbol) {
+    if (newValue !== oldValue) {
+      const t = newValue
+        ? createLayout(newValue)
+        : await this.resolveLanguage(this.language);
+      this.template = t;
+    }
+  }
 
   @Listen("pressed")
   onKeyboardButtonPressed(e: CustomEvent<string>) {

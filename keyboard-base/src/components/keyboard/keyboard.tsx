@@ -109,11 +109,14 @@ export class MyComponent {
     if (this.global === true) {
       this.openChange.emit(true);
     }
-    this.layout = layout;
     this.focusedInput = input;
+    this.layout = layout;
+    this.setCursorPosition(input.value.length);
   };
 
   onFocusOutElement = (e: FocusEvent): void => {
+    const el: HTMLInputElement = e.target as HTMLInputElement;
+    el.selectionStart = el.selectionEnd = Number(el.value.length)
     this.focusedInput = null;
     this.openChange.emit(false);
     e.target?.removeEventListener(
@@ -216,7 +219,7 @@ export class MyComponent {
 
   @Listen("keyboardButtonWillPress")
   handleKeyboardButtonWillPress() {
-    if (this.inputWithin && !this.focusedInput) {
+    if (this.inputWithin === true && !this.focusedInput) {
       const input = this.hostElement.querySelector("input") as HTMLInputElement;
       this.selectionStart = input.selectionStart;
       this.selectionEnd = input.selectionEnd;

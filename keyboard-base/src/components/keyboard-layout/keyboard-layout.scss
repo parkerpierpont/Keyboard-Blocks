@@ -1,6 +1,16 @@
 @import url("https://rsms.me/inter/inter.css");
 
 .keyboard-layout {
+  /**
+  * @prop --keyboard-min-height: the min height of the keyboard.
+  * @prop --keyboard-container-background: the main background-color of the keyboard container.
+  * @prop --key-color: the color of the keys.
+  * @prop --key-bg-color: the background of the keys.
+  * @prop --key-bg-color-accent: the background of the accented keys.
+  * @prop --key-box-shadow: the box-shadow of the keys.
+  * @prop --key-gap: the space between the keys.
+  * @prop --key-font-size-percent: font-size of the keys expressed as a percentage of the key height.
+  */
   --keyboard-min-height: 20vh;
   --keyboard-container-background: #eaeaea;
   --key-color: black;
@@ -73,6 +83,8 @@
       border-radius: var(--border-radius, 4px);
 
       background-color: var(--bg-color);
+
+      color: var(--key-color);
 
       font-size: var(--key-font-size);
 

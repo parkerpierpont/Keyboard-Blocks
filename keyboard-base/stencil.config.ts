@@ -26,9 +26,9 @@ export const config: Config = {
     // {
     //   type: 'dist-custom-elements-bundle'
     // },
-    {
-      type: "experimental-dist-module"
-    },
+    // {
+    //   type: "experimental-dist-module"
+    // },
     {
       type: "docs-readme",
       footer: "*Keyboard-Blocks Web Component Library* - 2020"
@@ -41,7 +41,7 @@ export const config: Config = {
       type: "docs-vscode",
       file: "dist/html.html-data.json",
       sourceCodeBaseUrl:
-        "https://github.com/parkerpierpont/Keyboard-Blocks/tree/master"
+        "https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base"
     },
     {
       type: "www",

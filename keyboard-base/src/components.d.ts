@@ -97,6 +97,10 @@ declare namespace LocalJSX {
          */
         "inputWithin"?: boolean;
         /**
+          * When the keyboard recieves a button press, this event will be dispached with the ```buttonName``` of the keyboard-button. Allows you to trigger side-effects (or primary event handling if a button's ```pressAction``` is set to 'none').
+         */
+        "onButtonPressed"?: (event: CustomEvent<string>) => void;
+        /**
           * Inputs can have a dom property ```data-layout="{something}"``` that allows them to pass the name of a layout back to the keyboard component. If the keyboard detects that the current input has a different 'data-layout' property than the previous input, it will fire this event, which provides the name of the new layout specified on the current input's ```data-layout``` dom property.
          */
         "onLayoutChange"?: (event: CustomEvent<string | null>) => void;

@@ -56,6 +56,11 @@ export class MyComponent {
    */
   @Event() openChange!: EventEmitter<boolean>;
 
+  /**
+   * When the keyboard recieves a button press, this event will be dispached with the ```buttonName``` of the keyboard-button. Allows you to trigger side-effects (or primary event handling if a button's ```pressAction``` is set to 'none').
+   */
+  @Event() buttonPressed!: EventEmitter<string>;
+
   @Listen("focusin", { target: "window" })
   onFocusElement(e: FocusEvent): void {
     if (this.inputWithin) return;
@@ -73,7 +78,7 @@ export class MyComponent {
     if (e.target.dataset?.layout) {
       layout = e.target.dataset.layout;
     }
-    this.onFocusIn(layout, input, false);
+    this.onFocusIn(layout, input);
   }
 
   @Listen("focusin", { target: "parent" })
@@ -93,16 +98,15 @@ export class MyComponent {
     if (e.target.dataset?.layout) {
       layout = e.target.dataset.layout;
     }
-    this.onFocusIn(layout, input, true);
+    this.onFocusIn(layout, input);
   }
 
   onFocusIn = (
     layout: string | null,
-    input: HTMLInputElement,
-    global: boolean
+    input: HTMLInputElement
   ): void => {
     this.layoutChange.emit(layout);
-    if (global) {
+    if (this.global === true) {
       this.openChange.emit(true);
     }
     this.layout = layout;
@@ -123,7 +127,6 @@ export class MyComponent {
   };
 
   onFocusedInputChange = (e: FocusEvent): void => {
-    console.log("change");
     const target: HTMLInputElement = e.target as HTMLInputElement;
     this.selectionStart = (target.selectionStart as number) + 1;
     this.selectionEnd = (target.selectionEnd as number) + 1;
@@ -250,6 +253,11 @@ export class MyComponent {
     }
   }
 
+  @Listen('pressed')
+  handleKeyboardButtonPressEvent(e: CustomEvent<string>) {
+    this.buttonPressed.emit(e.detail);
+  }
+
   onKeyboardButtonPressAdd = (k: string) => {
     if (
       document.activeElement !== this.focusedInput &&
@@ -257,13 +265,20 @@ export class MyComponent {
     )
       return;
     if (this.focusedInput !== null) {
+      const { Event: nativeEvent } = window;
       const el = this.focusedInput;
+      const sEvent = new nativeEvent('input', {
+        bubbles: true,
+        cancelable: true,
+      });
+
       const val = this.focusedInput.value;
       const selStart = el.selectionStart || val.length;
       const newVal =
         val.slice(0, selStart) + k + val.slice(el.selectionEnd || val.length);
       el.value = newVal;
       const newStartPos = selStart + k.length;
+      this.focusedInput.dispatchEvent(sEvent);
       this.setCursorPosition(newStartPos);
     }
   };

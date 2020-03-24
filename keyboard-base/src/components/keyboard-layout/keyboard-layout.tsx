@@ -75,7 +75,6 @@ export class KeyboardLayout {
 
   @Listen("pressed")
   onKeyboardButtonPressed(e: CustomEvent<string>) {
-    console.log(e.detail);
     this.fireAfterKeyPress(e.detail);
   }
 
@@ -113,7 +112,6 @@ export class KeyboardLayout {
     const keyboard = this.element.closest("reg-keyboard");
     if (!keyboard) return;
     keyboard?.addEventListener("openChange", handleOpenChange as EventListener);
-    console.log(keyboard);
     const t = this.customLanguageTemplate
       ? createLayout(this.customLanguageTemplate)
       : await this.resolveLanguage(this.language);

@@ -9,7 +9,10 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "lib": ["dom", "es2017"],
+    "lib": [
+      "dom",
+      "es2017"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -22,6 +25,12 @@
     "skipLibCheck": true,
     "target": "es2017"
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "stencil.config.ts"],
-  "exclude": ["node_modules", "../../node_modules/*"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "../../node_modules/*"
+  ]
 }

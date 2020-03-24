@@ -1,6 +1,6 @@
 {
   "name": "@register-ui/keyboard-base-react",
-  "version": "0.0.7",
+  "version": "0.0.17",
   "description": "React @register-ui keyboard-base components",
   "scripts": {
     "build": "npm run proxies.hydrate && npm run clean && npm run compile && node scripts/copy.js",
@@ -17,7 +17,7 @@
     "css/*.css"
   ],
   "dependencies": {
-    "@register-ui/keyboard-base": "0.0.11",
+    "@register-ui/keyboard-base": "0.0.26",
     "tslib": "*"
   },
   "peerDependencies": {

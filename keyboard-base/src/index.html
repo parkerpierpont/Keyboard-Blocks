@@ -42,5 +42,8 @@
     <reg-keyboard-layout language="english" layout="condensed"></reg-keyboard-layout>
   </reg-keyboard>
 </body>
+<script>
+  document.querySelector('reg-keyboard[global="true"]').addEventListener('openChange', e => console.log(e));
+</script>
 
 </html>

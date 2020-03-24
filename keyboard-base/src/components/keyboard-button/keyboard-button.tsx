@@ -14,7 +14,7 @@ export class KeyboardButton {
    * - none: has no default add or delete actions. You will need to handle custom behavior when the
    * ```pressed``` event fires.
    */
-  @Prop() pressAction: "add" | "delete" | "none";
+  @Prop() pressAction!: "add" | "delete" | "none";
 
   /**
    * The value that is added to the end of the input if the ```onPressAction``` prop is set to 'add'.
@@ -30,7 +30,7 @@ export class KeyboardButton {
    * The name of the button. Sets custom classes on the button for custom styling.
    * e.g - if name is 'Enter' the main element will get the class of ```keyboardButton-root-Enter``` and the native button element will get the class of ```keyboardButton-Enter```.
    */
-  @Prop() buttonName: string;
+  @Prop() buttonName!: string;
 
   /**
    * Inner Text, if you want the button to render html strings automatically.
@@ -40,14 +40,14 @@ export class KeyboardButton {
   /**
    * This event will fire when the button is pressed;
    */
-  @Event() pressed: EventEmitter<string>;
+  @Event() pressed!: EventEmitter<string>;
 
   /**
    * This event will fire on keyboard-button mouse-down;
    */
-  @Event() keyboardButtonWillPress: EventEmitter<void>;
+  @Event() keyboardButtonWillPress!: EventEmitter<void>;
 
-  @Event() keyboardButtonPress: EventEmitter<
+  @Event() keyboardButtonPress!: EventEmitter<
     | { action: "add"; value: string }
     | { action: "delete"; value: number | "clear" }
   >;

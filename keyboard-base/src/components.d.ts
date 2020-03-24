@@ -113,7 +113,7 @@ declare namespace LocalJSX {
         /**
           * The name of the button. Sets custom classes on the button for custom styling. e.g - if name is 'Enter' the main element will get the class of ```keyboardButton-root-Enter``` and the native button element will get the class of ```keyboardButton-Enter```.
          */
-        "buttonName"?: string;
+        "buttonName": string;
         /**
           * The number of chars that are removed at the end of the input if the ```onPressAction``` prop is set to 'delete'. Can also be set to 'clear' which will delete the whole input field.
          */
@@ -136,7 +136,7 @@ declare namespace LocalJSX {
         /**
           * The kinds of functions that this button supports. - add: adds a character or string to the input. The string add is defined by the ```addValue``` prop. - delete: removes characters from the input string. The number of characters removed is defined by the ```deleteValue``` prop. - none: has no default add or delete actions. You will need to handle custom behavior when the ```pressed``` event fires.
          */
-        "pressAction"?: "add" | "delete" | "none";
+        "pressAction": "add" | "delete" | "none";
         /**
           * Inner Text, if you want the button to render html strings automatically.
          */

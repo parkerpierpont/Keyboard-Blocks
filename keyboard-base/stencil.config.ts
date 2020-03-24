@@ -1,7 +1,19 @@
 import { Config } from "@stencil/core";
+import { postcss } from "@stencil/postcss";
+import { sass } from "@stencil/sass";
+// @ts-ignore
+import autoprefixer from "autoprefixer";
+// @ts-ignore
+import rtl from "postcss-rtl";
 
 export const config: Config = {
   namespace: "register-keyboard",
+  plugins: [
+    sass(),
+    postcss({
+      plugins: [autoprefixer(), rtl()]
+    })
+  ],
   outputTargets: [
     {
       type: "dist",

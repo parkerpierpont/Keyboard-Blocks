@@ -27,7 +27,7 @@ export class KeyboardLayout {
   containerElement?: HTMLDivElement;
   resizeObserver?: ResizeObserver;
 
-  @State() template: {
+  @State() template?: {
     default: string[];
     shift: string[];
     mobileDefault: string[];
@@ -42,7 +42,7 @@ export class KeyboardLayout {
     shift: boolean;
   } = { symbols: false, caps: false, shift: false };
 
-  @Element() element: HTMLRegKeyboardLayoutElement;
+  @Element() element!: HTMLRegKeyboardLayoutElement;
 
   /**
    * The type of keyboard layout you'd like to render
@@ -50,7 +50,7 @@ export class KeyboardLayout {
   @Prop() layout: "condensed" | "condensedNumpad" | "desktop" | "numpad" =
     "condensedNumpad";
   @Watch("layout")
-  watchHandler(newValue, oldValue) {
+  watchHandler(newValue: string, oldValue: string) {
     if (newValue === oldValue) return;
     this.layoutState = { symbols: false, caps: false, shift: false };
   }
@@ -85,7 +85,7 @@ export class KeyboardLayout {
       layoutState: { symbols, caps, shift },
       template
     } = this;
-    if (layout === "condensed" || layout === "condensedNumpad") {
+    if ((layout === "condensed" || layout === "condensedNumpad") && template) {
       if (symbols) {
         return template["mobileSymbol"];
       } else if (caps || shift) {
@@ -93,12 +93,14 @@ export class KeyboardLayout {
       } else {
         return template["mobileDefault"];
       }
-    } else if (layout === "desktop") {
+    } else if (layout === "desktop" && template) {
       if (caps || shift) {
         return template["shift"];
       } else {
         return template["default"];
       }
+    } else {
+      return english["default"];
     }
   };
 
@@ -109,7 +111,8 @@ export class KeyboardLayout {
       }
     };
     const keyboard = this.element.closest("reg-keyboard");
-    keyboard.addEventListener("openChange", handleOpenChange);
+    if (!keyboard) return;
+    keyboard?.addEventListener("openChange", handleOpenChange as EventListener);
     console.log(keyboard);
     const t = this.customLanguageTemplate
       ? createLayout(this.customLanguageTemplate)
@@ -134,15 +137,16 @@ export class KeyboardLayout {
   };
 
   setupResizeObserver = () => {
+    if (!this.containerElement) return;
     this.resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
         const width = entry.contentRect.width;
         const height = entry.contentRect.height;
-        this.containerElement.style.setProperty(
+        this.containerElement?.style.setProperty(
           "--keyboard-width",
           Math.round(width) + "px"
         );
-        this.containerElement.style.setProperty(
+        this.containerElement?.style.setProperty(
           "--keyboard-height",
           Math.round(height) + "px"
         );
@@ -164,7 +168,7 @@ export class KeyboardLayout {
 
   disconnectedCallback() {
     if (this.containerElement) {
-      this.resizeObserver.unobserve(this.containerElement);
+      this.resizeObserver?.unobserve(this.containerElement);
     }
   }
 
@@ -266,19 +270,20 @@ export class KeyboardLayout {
     const layout =
       props.type === "keyboard"
         ? this.determineLayout()
-        : this.template["numbers"];
+        : this.template?.["numbers"];
     const ButtonKey = (props: { name: string }) => {
       const finalProps = this.createKeyInfo(props.name);
       return (
+        // @ts-ignore
         <reg-keyboard-button {...finalProps}>
           <slot name={finalProps.buttonName}></slot>
         </reg-keyboard-button>
       );
     };
 
-    const layouts = [];
-    layout.forEach(row => {
-      let currentRow = [];
+    const layouts: string[][] = [];
+    layout?.forEach(row => {
+      let currentRow: string[] = [];
       const rowChars = row.split(" ");
       rowChars.forEach(char => {
         currentRow.push(char);
@@ -308,7 +313,7 @@ export class KeyboardLayout {
     return (
       <Host
         class={{
-          "keyboard-layout-root": true,
+          "keyboard-layout": true,
           [`layout-${this.layout}`]: true,
           [`shift`]: this.layoutState.shift,
           [`caps`]: this.layoutState.caps,
@@ -316,13 +321,35 @@ export class KeyboardLayout {
         }}
       >
         <div
-          class="keyboard-layout-container"
+          class={{
+            "keyboard-layout-container": true,
+            [`layout-${this.layout}`]: true,
+            [`shift`]: this.layoutState.shift,
+            [`caps`]: this.layoutState.caps,
+            [`symbols`]: this.layoutState.symbols
+          }}
           ref={el => (this.containerElement = el as HTMLDivElement)}
         >
-          {this.template && <KeyboardLayout type="keyboard" />}
+          {this.template && (
+            <div
+              class={{
+                "keyboard-layout-keyboard": true,
+                [`layout-${this.layout}`]: true
+              }}
+            >
+              <KeyboardLayout type="keyboard" />
+            </div>
+          )}
           {this.template &&
             (this.layout === "condensedNumpad" || this.layout === "numpad") && (
-              <KeyboardLayout type="numbers" />
+              <div
+                class={{
+                  "keyboard-layout-numpad": true,
+                  [`layout-${this.layout}`]: true
+                }}
+              >
+                <KeyboardLayout type="numbers" />
+              </div>
             )}
         </div>
       </Host>

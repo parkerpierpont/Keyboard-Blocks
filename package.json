@@ -1,0 +1,54 @@
+{
+  "name": "register-ui/keyboard-monorepo",
+  "private": true,
+  "workspaces": [
+    "keyboard-base/*",
+    "keyboard-base-react/*",
+    "keyboard-test-app"
+  ],
+  "devDependencies": {
+    "@stencil/eslint-plugin": "^0.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "husky": "4.2.3",
+    "lint-staged": "10.0.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.0.2",
+    "typescript": "3.8.3",
+    "stylelint": "^13.2.1",
+    "stylelint-order": "^4.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.tsx": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.jsx": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "version": "0.0.0",
+  "dependencies": {}
+}

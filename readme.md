@@ -60,10 +60,15 @@ export default function App() {
 ```
 
 ## Keyboard Component
+
 [Keyboard Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard)
 
 ## Keyboard-Button Component
+
 [Keyboard-Button Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-button)
 
 ## Keyboard-Layout Component
+
+For pre-rolled, customizable keyboard languages, layouts, and styles!
+
 [Keyboard-Layout Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-layout)

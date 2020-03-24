@@ -9,7 +9,9 @@ These are building blocks for making efficient user-interfaces that utilize virt
 
 ```html
 <input class="global-keyboard" name="test-input" />
-<div style="padding: 24px; background: #f1f1f1">
+<div style="padding: 24px;
+
+ background: #f1f1f1">
   <!-- Isolated Keyboard (only handles inputs within this parent) -->
 
   <input class="local-keyboard" name="test-input-2" />
@@ -62,3 +64,6 @@ export default function App() {
 
 ## Keyboard-Button Component
 [Keyboard-Button Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-button)
+
+## Keyboard-Layout Component
+[Keyboard-Layout Component Documentation](https://github.com/parkerpierpont/Keyboard-Blocks/tree/master/keyboard-base/src/components/keyboard-layout)
